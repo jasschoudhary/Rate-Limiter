@@ -1,7 +1,11 @@
 package com.example.ratelimiting.controller;
 
 import com.example.ratelimiting.service.RateLimitingService;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,12 +20,12 @@ public class RateLimitingController {
     }
 
     @GetMapping("/resource")
-    public String getResource() {
-        String apiKey = "test-api-key"; // Retrieve API key from request headers or JWT token
+    public ResponseEntity<String> getResource(@RequestHeader("X-API-Key") String apiKey) {
+//        String apiKey = "test-api-key"; // Retrieve API key from request headers or JWT token
         if (rateLimitingService.allowRequest(apiKey)) {
-            return "Resource api accessed successfully";
+            return ResponseEntity.ok( "Resources accessed successfully");
         } else {
-            return "Rate limit exceeded. Please Try again later.";
+            return ResponseEntity.status(HttpStatus.TOO_MANY_REQUESTS).body("Rate limit exceeded. Try again later.") ;
         }
     }
 }

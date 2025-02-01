@@ -1,0 +1,25 @@
+
+ * token bucket algorithm used 
+ * test end point :  curl http://localhost:8080/api/rate-limiting/resource
+
+
+ In fixed window counter time frame is divded into small window  and only fix requsets are allowed
+ into this window of time .
+ 2 impt thing 
+maximum number of requests allowed per window ? 
+length of each window ?
+
+
+compute(key,Bifunction) -- >  method in hashmap is used to compute a value for givenKey in hashMap.
+use it if want to autometically update the value for a given key .
+
+
+run it in terminal at root directory (mvn file) : mvn clean spring-boot:run
+
+and test in terminal passing requests : 
+
+for i in {1..10}; do   curl -H "X-API-Key: test-api-key" http://localhost:8080/api/rate-limiting/resource; done
+
+
+Spring Boot uses relaxed binding meaning example  (defaultMaxRequests == default.max-requests)
+ 

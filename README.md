@@ -1,5 +1,5 @@
-# rate-limiting-example
-Demo project for Spring Boot Rate Limiting 
+# Rate-limiter
+ Project for Spring Boot Rate Limiting ,  
 
 Implemented Rate Limiter Using  :
 
